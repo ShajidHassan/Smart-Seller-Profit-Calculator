@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Seller Profit Calculator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-mark">SS</div>
+      <div class="brand-text">
+        <h1>Profit Calculator</h1>
+        <span class="subtitle">Smart seller toolkit</span>
+      </div>
+    </div>
+    <div class="currency-toggle" role="group" aria-label="Currency">
+      <button type="button" class="currency-btn active" data-currency="BDT">BDT</button>
+      <button type="button" class="currency-btn" data-currency="USD">USD</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button type="button" class="tab active" data-tab="calc" role="tab">Calculator</button>
+    <button type="button" class="tab" data-tab="saved" role="tab">Saved <span class="badge" id="tab-saved-count">0</span></button>
+    <button type="button" class="tab" data-tab="settings" role="tab">Settings</button>
+  </nav>
+
+  <main>
+    <!-- ========= Calculator tab ========= -->
+    <section id="tab-calc" class="tab-content active" role="tabpanel">
+      <div class="mode-toggle">
+        <label class="mode-option">
+          <input type="radio" name="mode" value="profit" checked>
+          <span>Profit mode</span>
+        </label>
+        <label class="mode-option">
+          <input type="radio" name="mode" value="target">
+          <span>Target profit mode</span>
+        </label>
+      </div>
+
+      <div class="field">
+        <label for="product-cost">Product cost <span class="cur-suffix">BDT</span></label>
+        <input type="number" id="product-cost" min="0" step="0.01" inputmode="decimal" placeholder="0">
+      </div>
+
+      <div class="field">
+        <label for="delivery-cost">Delivery cost <span class="cur-suffix">BDT</span></label>
+        <div class="row">
+          <input type="number" id="delivery-cost" min="0" step="0.01" inputmode="decimal" placeholder="0">
+          <select id="courier-preset" aria-label="Courier preset">
+            <option value="">Preset…</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="ad-cost">Ad cost per order <span class="cur-suffix">BDT</span></label>
+        <input type="number" id="ad-cost" min="0" step="0.01" inputmode="decimal" placeholder="0">
+      </div>
+
+      <div class="field">
+        <label for="discount">Discount <span class="cur-suffix">BDT</span></label>
+        <input type="number" id="discount" min="0" step="0.01" inputmode="decimal" placeholder="0">
+      </div>
+
+      <div class="field" id="selling-field">
+        <label for="selling-price">Selling price <span class="cur-suffix">BDT</span></label>
+        <input type="number" id="selling-price" min="0" step="0.01" inputmode="decimal" placeholder="0">
+      </div>
+
+      <div class="field hidden" id="target-field">
+        <label for="target-margin">Target profit margin (%)</label>
+        <input type="number" id="target-margin" min="0" max="99" step="0.1" inputmode="decimal" placeholder="30">
+      </div>
+
+      <div class="results" id="results">
+        <div class="result-row">
+          <span class="result-label">Profit</span>
+          <span class="result-value" id="result-profit">—</span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Profit margin</span>
+          <span class="result-value" id="result-margin">—</span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Break-even price</span>
+          <span class="result-value" id="result-breakeven">—</span>
+        </div>
+        <div class="result-row hidden" id="suggested-row">
+          <span class="result-label">Suggested selling price</span>
+          <span class="result-value" id="result-suggested">—</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <input type="text" id="product-name" placeholder="Product name (optional)" maxlength="60">
+        <div class="action-row">
+          <button type="button" id="save-btn" class="btn btn-primary">Save product</button>
+          <button type="button" id="reset-btn" class="btn btn-secondary">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= Saved products tab ========= -->
+    <section id="tab-saved" class="tab-content" role="tabpanel">
+      <div class="saved-toolbar">
+        <span id="saved-count">0 saved</span>
+        <div>
+          <select id="sort-by" aria-label="Sort">
+            <option value="date">Newest</option>
+            <option value="profit">Highest profit</option>
+            <option value="margin">Highest margin</option>
+            <option value="name">Name</option>
+          </select>
+          <button type="button" id="clear-all-btn" class="btn-link">Clear all</button>
+        </div>
+      </div>
+      <div id="saved-list" class="saved-list"></div>
+      <div id="saved-empty" class="empty-state">
+        <p>No saved products yet.</p>
+        <p class="hint">Calculate a product, then tap <em>Save product</em>.</p>
+      </div>
+    </section>
+
+    <!-- ========= Settings tab ========= -->
+    <section id="tab-settings" class="tab-content" role="tabpanel">
+      <div class="field">
+        <label for="usd-rate">USD exchange rate (BDT per 1 USD)</label>
+        <input type="number" id="usd-rate" min="0.01" step="0.01" inputmode="decimal">
+        <small>Used when toggling between BDT and USD.</small>
+      </div>
+
+      <div class="field">
+        <label>Courier presets</label>
+        <div id="courier-list" class="courier-list"></div>
+        <div class="row courier-add">
+          <input type="text" id="new-courier-name" placeholder="Courier name" maxlength="40">
+          <input type="number" id="new-courier-cost" placeholder="BDT" min="0" step="0.01" inputmode="decimal">
+          <button type="button" id="add-courier-btn" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <button type="button" id="reset-presets-btn" class="btn btn-secondary">Reset presets to defaults</button>
+      </div>
+
+      <div class="version">v1.0.0 · Saved data stays in your browser.</div>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
