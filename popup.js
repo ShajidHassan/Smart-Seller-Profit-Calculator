@@ -33,6 +33,21 @@ const state = {
 // Storage
 // ============================================================
 
+// Shim chrome.storage when running outside the extension context (e.g. for
+// screenshot generation in a regular file:// page). Harmless in production
+// because the real chrome.storage.local takes precedence when present.
+if (typeof chrome === 'undefined' || !chrome.storage) {
+  const memStore = {};
+  globalThis.chrome = {
+    storage: {
+      local: {
+        get: (keys, cb) => cb(memStore),
+        set: (obj, cb) => { Object.assign(memStore, obj); if (cb) cb(); }
+      }
+    }
+  };
+}
+
 const storage = {
   get(keys) {
     return new Promise(resolve => chrome.storage.local.get(keys, resolve));
@@ -609,4 +624,48 @@ function setupEvents() {
   setupEvents();
   recalculate();
   updateSavedCounts();
+  applyDemoFromUrl();
 })();
+
+// ============================================================
+// Demo mode (used to render store screenshots; ignored otherwise)
+// ============================================================
+
+function applyDemoFromUrl() {
+  const params = new URLSearchParams(location.search);
+  const demo = params.get('demo');
+  if (!demo) return;
+
+  const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
+
+  if (demo === 'calc') {
+    setVal('product-cost', '850');
+    setVal('delivery-cost', '70');
+    setVal('ad-cost', '60');
+    setVal('discount', '0');
+    setVal('selling-price', '1499');
+    setVal('product-name', 'Premium Cotton T-Shirt');
+    recalculate();
+  } else if (demo === 'target') {
+    document.querySelector('input[name="mode"][value="target"]').checked = true;
+    applyMode('target');
+    setVal('product-cost', '850');
+    setVal('delivery-cost', '70');
+    setVal('ad-cost', '60');
+    setVal('discount', '0');
+    setVal('target-margin', '35');
+    setVal('product-name', 'Premium Cotton T-Shirt');
+    recalculate();
+  } else if (demo === 'saved') {
+    state.saved = [
+      { id: 'd1', name: 'Premium Cotton T-Shirt', productCost: 850, deliveryCost: 70, adCost: 60, discount: 0, sellingPrice: 1499, profit: 519, margin: 34.62, breakEven: 980, createdAt: Date.now() - 1000 },
+      { id: 'd2', name: 'Wireless Earbuds Pro',   productCost: 1200, deliveryCost: 130, adCost: 80, discount: 100, sellingPrice: 2499, profit: 989, margin: 41.23, breakEven: 1510, createdAt: Date.now() - 2000 },
+      { id: 'd3', name: 'Phone Case Combo',       productCost: 180, deliveryCost: 70, adCost: 50, discount: 0, sellingPrice: 599, profit: 299, margin: 49.92, breakEven: 300, createdAt: Date.now() - 3000 },
+      { id: 'd4', name: 'Bedsheet Set',           productCost: 950, deliveryCost: 130, adCost: 70, discount: 200, sellingPrice: 1899, profit: 549, margin: 32.31, breakEven: 1350, createdAt: Date.now() - 4000 },
+      { id: 'd5', name: 'Skincare Bundle',        productCost: 600, deliveryCost: 70, adCost: 80, discount: 0, sellingPrice: 1299, profit: 549, margin: 42.26, breakEven: 750, createdAt: Date.now() - 5000 }
+    ];
+    document.querySelector('.tab[data-tab="saved"]').click();
+  } else if (demo === 'presets') {
+    document.querySelector('.tab[data-tab="settings"]').click();
+  }
+}

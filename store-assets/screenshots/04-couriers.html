@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bangladesh courier presets</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    width: 1280px;
+    height: 800px;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 60%, #4c1d95 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    gap: 60px;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 90% 20%, rgba(0,0,0,0.18) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .copy { flex: 1; max-width: 600px; position: relative; z-index: 1; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 14px 8px 8px; border-radius: 999px;
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 14px; font-weight: 600;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .badge img { width: 28px; height: 28px; border-radius: 6px; display: block; }
+  h1 {
+    font-size: 60px;
+    line-height: 1.05;
+    margin: 0 0 22px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+  }
+  .lead {
+    font-size: 22px;
+    line-height: 1.5;
+    opacity: 0.95;
+    margin: 0 0 28px;
+  }
+  .courier-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    max-width: 540px;
+  }
+  .courier-tags span {
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .popup-shell {
+    width: 520px;
+    height: 720px;
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.40), 0 6px 18px rgba(0,0,0,0.20);
+    overflow: hidden;
+    background: white;
+    position: relative;
+    z-index: 1;
+  }
+  iframe { display: block; width: 100%; height: 100%; border: 0; }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="badge"><img src="../../icons/icon128.png" alt="">Smart Seller Profit Calculator</div>
+    <h1>Bangladesh courier rates, built in.</h1>
+    <p class="lead">Pick a courier — delivery cost auto-fills. Edit, add your own, or reset to defaults anytime.</p>
+    <div class="courier-tags">
+      <span>Pathao</span>
+      <span>Steadfast</span>
+      <span>RedX</span>
+      <span>Sundarban</span>
+      <span>Paperfly</span>
+      <span>eCourier</span>
+      <span>Inside Dhaka</span>
+      <span>Outside Dhaka</span>
+    </div>
+  </div>
+  <div class="popup-shell">
+    <iframe src="../../popup.html?demo=presets"></iframe>
+  </div>
+</body>
+</html>

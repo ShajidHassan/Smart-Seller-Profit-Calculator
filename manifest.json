@@ -3,6 +3,7 @@
   "name": "Smart Seller Profit Calculator",
   "version": "1.0.0",
   "description": "Calculate product profit, margin, and break-even price. Includes target profit mode, saved products, BDT/USD toggle, and Bangladesh courier presets.",
+  "author": "Shajid Hassan",
   "action": {
     "default_popup": "popup.html",
     "default_title": "Smart Seller Profit Calculator",
