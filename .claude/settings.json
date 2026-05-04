@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -p smart-seller-profit-calculator.zip manifest.json)",
+      "Bash(unzip -p smart-seller-profit-calculator.zip popup.js)"
+    ]
+  }
+}
