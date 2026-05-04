@@ -1,0 +1,18 @@
+# Build artifacts
+smart-seller-profit-calculator.zip
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Python (icon generator)
+__pycache__/
+*.pyc
+.venv/
+venv/

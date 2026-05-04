@@ -13,7 +13,7 @@ zip -r "$OUT" \
   popup.css \
   popup.js \
   icons \
-  -x "*.DS_Store" "*/.DS_Store"
+  -x "*.DS_Store" "*/.DS_Store" "icons/icon-master.png"
 
 echo
 echo "Built $OUT ($(du -h "$OUT" | cut -f1))"
