@@ -148,6 +148,10 @@ See the full [Privacy Policy](https://shajidhassan.github.io/Smart-Seller-Profit
 
 Issues and pull requests welcome at [github.com/ShajidHassan/Smart-Seller-Profit-Calculator/issues](https://github.com/ShajidHassan/Smart-Seller-Profit-Calculator/issues).
 
+## Author
+
+Built by **Shajid Hassan** — [shajid.dev](https://www.shajid.dev) · [GitHub](https://github.com/ShajidHassan)
+
 ## License
 
-MIT © Shajid Hassan
+MIT © [Shajid Hassan](https://www.shajid.dev)
