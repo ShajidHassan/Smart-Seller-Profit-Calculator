@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(unzip -p smart-seller-profit-calculator.zip manifest.json)",
-      "Bash(unzip -p smart-seller-profit-calculator.zip popup.js)"
+      "Bash(unzip -p smart-seller-profit-calculator.zip popup.js)",
+      "Bash('/Applications/Google Chrome 2.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=900,1100 --screenshot=/tmp/privacy-preview.png file:///Users/shajidhassan/Projects/smart-seller-profit-calculator/docs/privacy.html)"
     ]
   }
 }
