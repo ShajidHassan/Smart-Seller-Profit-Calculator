@@ -1,7 +1,7 @@
 # Smart Seller Profit Calculator
 
-> **Coming soon to the Chrome Web Store** — currently pending review.
-> ⭐ Star this repo to be notified when it goes live.
+> 🎉 **Now live on the Chrome Web Store!** [**→ Add to Chrome**](https://chromewebstore.google.com/detail/djdbgdpcljajecnlbehbbinjjedbdamb)
+> ⭐ If it saves you time, please star this repo and leave a review on the store.
 
 <p align="center">
   <img src="icons/icon-master.png" width="128" alt="Smart Seller Profit Calculator">
@@ -16,6 +16,12 @@
 </p>
 
 <p align="center">
+  <a href="https://chromewebstore.google.com/detail/djdbgdpcljajecnlbehbbinjjedbdamb">
+    <img src="https://img.shields.io/badge/Chrome%20Web%20Store-Add%20to%20Chrome-34d399?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Add to Chrome">
+  </a>
+</p>
+
+<p align="center">
   <img src="store-assets/screenshots/01-hero-calculator.png" alt="Hero screenshot" width="720">
 </p>
 
@@ -23,14 +29,12 @@
 
 ## Status
 
-|                      |                               |
-| -------------------- | ----------------------------- |
-| **Chrome Web Store** | 🟡 Submitted — pending review |
-| **Version**          | 1.0.0                         |
-| **Manifest**         | V3                            |
-| **License**          | MIT                           |
-
-You can use it right now via [load-unpacked install](#load-unpacked-development) — see below.
+|                      |                                                                                      |
+| -------------------- | ------------------------------------------------------------------------------------ |
+| **Chrome Web Store** | 🟢 [Live](https://chromewebstore.google.com/detail/djdbgdpcljajecnlbehbbinjjedbdamb) |
+| **Version**          | 1.0.0                                                                                |
+| **Manifest**         | V3                                                                                   |
+| **License**          | MIT                                                                                  |
 
 ---
 
@@ -79,9 +83,9 @@ You can use it right now via [load-unpacked install](#load-unpacked-development)
 
 ## Install
 
-### From the Chrome Web Store
+### From the Chrome Web Store (recommended)
 
-_Coming soon — link will appear here once approved._
+👉 **[Add to Chrome](https://chromewebstore.google.com/detail/djdbgdpcljajecnlbehbbinjjedbdamb)** — one-click install, auto-updates.
 
 ### Load unpacked (development)
 
